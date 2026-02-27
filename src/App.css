@@ -1,0 +1,421 @@
+/* =========================================
+   1. GLOBAL RESETS & BASE STYLES
+========================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #0f172a; 
+  color: #f8fafc;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* =========================================
+   2. BENTO GRID LAYOUT
+========================================= */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 220px; 
+  gap: 1.5rem;
+  max-width: 1100px; 
+  width: 100%;
+}
+
+.bento-card {
+  background: #1e293b;
+  border-radius: 24px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #334155;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -15px rgba(0,0,0,0.5); 
+}
+
+/* =========================================
+   3. HERO CARD & 3D POPOUT AVATAR
+========================================= */
+.hero-card {
+  grid-column: span 4; 
+  grid-row: span 2; 
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6); 
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; 
+  align-items: center; 
+  gap: 4rem; 
+  padding: 3rem 4rem; 
+}
+
+.hero-text-container {
+  flex: 1; 
+  text-align: left; 
+  z-index: 10;
+}
+
+.hero-card h1 {
+  font-size: 3.5rem; 
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.hero-card p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* 1. The Main Container */
+.avatar-container {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  flex-shrink: 0;
+  /* NO overflow: hidden here, so your head is free to pop out! */
+}
+
+/* 2. The Circle Background */
+.avatar-circle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15); 
+  border: 4px solid #f8fafc;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  z-index: 1;
+}
+
+/* 3. THE MAGIC WRAPPER */
+.avatar-clip-wrapper {
+  position: absolute;
+  bottom: 4px; /* Sits perfectly inside the bottom border */
+  left: 4px;   /* Sits perfectly inside the left border */
+  width: 242px; /* 250px minus the 4px border on each side */
+  height: 350px; /* Much taller than the circle to let your head extend out */
+  border-bottom-left-radius: 121px; /* Matches the curve of the circle */
+  border-bottom-right-radius: 121px; /* Matches the curve of the circle */
+  overflow: hidden; /* This cleanly cuts off the bottom corners of your shirt! */
+  z-index: 2;
+  
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Grounds your body to the bottom */
+}
+
+/* 4. The Image Itself */
+.hero-avatar-popout {
+  width: 260px; /* Large and proud */
+  height: auto;
+  object-fit: contain;
+  margin-bottom: -10px; /* Pulls it down slightly to hide the flat cut against the curve */
+  /* This creates a 3D shadow ONLY on the parts of your body popping out */
+  filter: drop-shadow(0px -10px 15px rgba(168, 85, 247, 0.4)); 
+}
+
+/* =========================================
+   4. ABOUT / SKILLS CARD
+========================================= */
+.about-card {
+  grid-column: span 4; 
+  grid-row: span 2; 
+  justify-content: flex-start;
+}
+
+.skills-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.skill-item {
+  width: 100%;
+}
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #f8fafc;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 12px;
+  background-color: #334155;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 10px;
+}
+
+/* =========================================
+   5. EXPERIENCE CARD
+========================================= */
+.experience-card {
+  grid-column: span 4; 
+  grid-row: span 2;
+  justify-content: flex-start;
+}
+
+.experience-card::-webkit-scrollbar { width: 6px; }
+.experience-card::-webkit-scrollbar-track { background: transparent; }
+.experience-card::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
+
+/* =========================================
+   6. PROJECT CARDS
+========================================= */
+.project-card {
+  grid-column: span 4; 
+  grid-row: span 1;
+  flex-direction: row; 
+  padding: 0; 
+  align-items: stretch; 
+}
+
+.project-image {
+  width: 300px; 
+  height: 100%;
+  min-height: 220px; 
+  object-fit: cover;
+  border-bottom: none; 
+  border-right: 1px solid #334155; 
+}
+
+.project-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.project-content h2 {
+  font-size: 1.5rem; 
+  margin-bottom: 0.5rem;
+}
+
+.project-content p {
+  font-size: 1rem;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+/* =========================================
+   7. CONTACT CARD
+========================================= */
+.contact-card {
+  grid-column: span 4;
+  grid-row: span 1;
+  align-items: center;
+  text-align: center;
+}
+
+/* =========================================
+   8. MODAL POPUP STYLES
+========================================= */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; 
+  padding: 2rem;
+}
+
+.modal-content {
+  background: #1e293b;
+  border-radius: 24px;
+  max-width: 800px;
+  width: 100%;
+  border: 1px solid #334155;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0,0,0,0.6);
+  color: #f8fafc;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  z-index: 10;
+  transition: background 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-close-btn:hover { background: #ef4444; }
+
+.modal-image-container {
+  position: relative;
+  width: 100%;
+  height: 350px; 
+}
+
+.modal-image {
+  width: 100%;
+  height: 100%; 
+  object-fit: cover;
+  border-bottom: 1px solid #334155;
+}
+
+.modal-body {
+  padding: 2.5rem;
+}
+
+/* Modal Navigation (Arrows & Dots) */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15, 23, 42, 0.7); 
+  color: #f8fafc;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 5;
+}
+
+.nav-btn:hover {
+  background: rgba(168, 85, 247, 0.9); 
+  transform: translateY(-50%) scale(1.1); 
+}
+
+.prev-btn { left: 1rem; }
+.next-btn { right: 1rem; }
+
+.image-indicators {
+  position: absolute;
+  bottom: 1rem; 
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 6px; 
+  z-index: 5;
+}
+
+.dot {
+  width: 6px; 
+  height: 6px; 
+  border-radius: 50%; 
+  background: rgba(255, 255, 255, 0.3); 
+  border: none;
+  padding: 0; 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.6); 
+}
+
+.dot:hover { background: rgba(255, 255, 255, 0.6); }
+.dot.active { background: #f8fafc; }
+
+
+/* =========================================
+   9. MOBILE RESPONSIVE QUERIES
+========================================= */
+
+/* Consolidate all tablet/mobile rules (max-width: 900px) */
+@media (max-width: 900px) {
+  /* Grid */
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+  }
+  .bento-card {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+    min-height: 250px;
+  }
+  
+  /* Hero */
+  .hero-card {
+    flex-direction: column; 
+    text-align: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  .hero-card p { max-width: 100%; }
+  .hero-text-container { text-align: center; }
+  
+/* ... keep your mobile grid and hero-card rules ... */
+
+  .avatar-container {
+    width: 200px;
+    height: 200px;
+    margin-top: 3rem; /* Gives space for the pop-out head on mobile */
+  }
+  .avatar-circle {
+    width: 200px;
+    height: 200px;
+  }
+  .avatar-clip-wrapper {
+    bottom: 4px;
+    left: 4px;
+    width: 192px; 
+    height: 300px;
+    border-bottom-left-radius: 96px; 
+    border-bottom-right-radius: 96px;
+  }
+  .hero-avatar-popout { 
+    width: 210px; 
+  }
+
+  /* Projects */
+  .project-card { flex-direction: column; }
+  .project-image {
+    width: 100%;
+    height: 180px;
+    min-height: auto;
+    border-right: none;
+    border-bottom: 1px solid #334155;
+  }
+}
+
+/* Small Mobile tweaks for the Modal (max-width: 768px) */
+@media (max-width: 768px) {
+  .modal-overlay { padding: 1rem; }
+  .modal-image-container { height: 200px; }
+  .modal-body { padding: 1.5rem; }
+}
