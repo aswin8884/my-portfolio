@@ -2,14 +2,14 @@ import { useState } from 'react'; // Notice useEffect is gone!
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectModal from './ProjectModal'; 
 
-const ProjectCard = ({ title, description, longDescription, techStack, images }) => {
+const ProjectCard = ({ id, title, description, longDescription, techStack, images }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
 
   return (
     <>
       {/* --- THE STANDARD GRID CARD --- */}
-      <motion.div 
+      <motion.div id={id}
         layoutId={`card-container-${title}`} 
         whileHover={{ scale: 1.02 }}
         className="bento-card project-card"

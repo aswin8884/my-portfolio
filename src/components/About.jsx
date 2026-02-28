@@ -10,7 +10,7 @@ const skillsData = [
 
 const About = () => {
   return (
-    <motion.div 
+    <motion.div id="about"
       whileHover={{ scale: 1.01, transition: { type: "spring", stiffness: 300 } }}
       className="bento-card about-card"
     >

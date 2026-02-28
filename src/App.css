@@ -16,6 +16,80 @@ body {
   align-items: center;
   min-height: 100vh;
   padding: 2rem;
+  padding-top: 100px;
+}
+
+html {
+  scroll-behavior: smooth; 
+}
+
+[id] {
+  scroll-margin-top: 100px;
+}
+
+/* =========================================
+   NAVBAR STYLES
+========================================= */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  background: rgba(15, 23, 42, 0.85); 
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 2000; 
+  border-bottom: 1px solid #334155;
+}
+
+.navbar-logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #f8fafc;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.navbar-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.navbar-links a:hover {
+  color: #f8fafc;
+}
+
+.navbar-links a.active {
+  color: #ffffff; 
+  font-weight: 700; 
+}
+
+.navbar-links a.active::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #a855f7;
+  margin-top: 4px;
+  border-radius: 2px;
+}
+
+@media (max-width: 600px) {
+  .navbar-links {
+    display: none;
+  }
 }
 
 /* =========================================
@@ -75,16 +149,13 @@ body {
   line-height: 1.6;
 }
 
-/* 1. The Main Container */
 .avatar-container {
   position: relative;
   width: 250px;
   height: 250px;
   flex-shrink: 0;
-  /* NO overflow: hidden here, so your head is free to pop out! */
 }
 
-/* 2. The Circle Background */
 .avatar-circle {
   position: absolute;
   bottom: 0;
@@ -98,30 +169,26 @@ body {
   z-index: 1;
 }
 
-/* 3. THE MAGIC WRAPPER */
 .avatar-clip-wrapper {
   position: absolute;
-  bottom: 4px; /* Sits perfectly inside the bottom border */
-  left: 4px;   /* Sits perfectly inside the left border */
-  width: 242px; /* 250px minus the 4px border on each side */
-  height: 350px; /* Much taller than the circle to let your head extend out */
-  border-bottom-left-radius: 121px; /* Matches the curve of the circle */
-  border-bottom-right-radius: 121px; /* Matches the curve of the circle */
-  overflow: hidden; /* This cleanly cuts off the bottom corners of your shirt! */
+  bottom: 4px; 
+  left: 4px;   
+  width: 242px; 
+  height: 350px; 
+  border-bottom-left-radius: 121px; 
+  border-bottom-right-radius: 121px; 
+  overflow: hidden; 
   z-index: 2;
-  
   display: flex;
   justify-content: center;
-  align-items: flex-end; /* Grounds your body to the bottom */
+  align-items: flex-end; 
 }
 
-/* 4. The Image Itself */
 .hero-avatar-popout {
-  width: 260px; /* Large and proud */
+  width: 260px; 
   height: auto;
   object-fit: contain;
-  margin-bottom: -10px; /* Pulls it down slightly to hide the flat cut against the curve */
-  /* This creates a 3D shadow ONLY on the parts of your body popping out */
+  margin-bottom: -10px; 
   filter: drop-shadow(0px -10px 15px rgba(168, 85, 247, 0.4)); 
 }
 
@@ -167,21 +234,131 @@ body {
 }
 
 /* =========================================
-   5. EXPERIENCE CARD
+   5. EXPERIENCE CARD & TIMELINE
 ========================================= */
 .experience-card {
   grid-column: span 4; 
   grid-row: span 2;
   justify-content: flex-start;
+  overflow-y: auto;
+  padding-right: 1rem;
+  position: relative;
 }
 
 .experience-card::-webkit-scrollbar { width: 6px; }
 .experience-card::-webkit-scrollbar-track { background: transparent; }
 .experience-card::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
 
+.experience-header {
+  position: sticky;
+  top: -2rem; 
+  background-color: rgba(30, 41, 59, 0.95); 
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  z-index: 10;
+}
+
+.experience-header h2 {
+  color: #a855f7;
+  margin: 0;
+}
+
+.timeline-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.timeline-item {
+  position: relative;
+  border-left: 2px solid #334155;
+  padding-left: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+/* Removes the line and padding on the last item for a clean finish */
+.timeline-item:last-child {
+  border-left: 2px solid transparent;
+  padding-bottom: 0;
+}
+
+.timeline-node {
+  position: absolute;
+  left: -7px; 
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #a855f7;
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
+  border: 2px solid #1e293b; 
+}
+
+.timeline-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.2rem;
+}
+
+.timeline-role {
+  font-size: 1.15rem;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.timeline-date {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #a855f7;
+  background-color: rgba(168, 85, 247, 0.1);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.timeline-company {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.timeline-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin: 0;
+}
+
 /* =========================================
    6. PROJECT CARDS
 ========================================= */
+
+.projects-header-card {
+  grid-column: span 4; 
+  grid-row: span 1; 
+  align-items: center; 
+  text-align: center; 
+  background: linear-gradient(to right, #1e293b, #0f172a);
+}
+
+.projects-header-card h2 {
+  color: #a855f7; 
+  font-size: 2.5rem; 
+  margin-bottom: 0.5rem;
+}
+
+.projects-header-card p {
+  color: #94a3b8; 
+  font-size: 1.1rem;
+}
+
 .project-card {
   grid-column: span 4; 
   grid-row: span 1;
@@ -219,12 +396,122 @@ body {
 }
 
 /* =========================================
-   7. CONTACT CARD
+   7. CONTACT & FORM CARDS (STACKED)
 ========================================= */
-.contact-card {
-  grid-column: span 4;
-  grid-row: span 1;
+.contact-card, .contact-form-card {
+  grid-column: span 4; 
+  grid-row: span 2; 
+  justify-content: center;
+}
+
+/* --- Social Buttons Row Styling --- */
+.social-links-container {
+  display: flex;
+  flex-direction: row; 
+  flex-wrap: wrap;     
+  justify-content: center; 
+  gap: 1rem;
+}
+
+.social-btn {
+  display: inline-flex;
   align-items: center;
+  gap: 0.5rem; 
+  padding: 0.75rem 1.2rem; 
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  color: #f8fafc;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem; 
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  transform: translateY(-3px);
+  color: #ffffff;
+}
+
+/* Custom Brand Hover Colors */
+.github-btn:hover {
+  background-color: #333333;
+  border-color: #333333;
+}
+
+.linkedin-btn:hover {
+  background-color: #0077b5;
+  border-color: #0077b5;
+}
+
+.email-btn:hover {
+  background-color: #ea4335; 
+  border-color: #ea4335;
+}
+
+.whatsapp-btn:hover {
+  background-color: #25D366;
+  border-color: #25D366;
+}
+
+body.light-mode .social-btn {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+body.light-mode .social-btn:hover {
+  color: #ffffff;
+}
+
+/* --- Contact Form Inputs Styling --- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #334155;
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, outline 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #a855f7;
+}
+
+.submit-btn {
+  padding: 1rem;
+  border-radius: 12px;
+  border: none;
+  background-color: #a855f7;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.submit-btn:hover {
+  background-color: #9333ea;
+  transform: translateY(-2px);
+}
+
+.form-status {
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #10b981;
   text-align: center;
 }
 
@@ -297,7 +584,6 @@ body {
   padding: 2.5rem;
 }
 
-/* Modal Navigation (Arrows & Dots) */
 .nav-btn {
   position: absolute;
   top: 50%;
@@ -355,8 +641,6 @@ body {
 /* =========================================
    9. MOBILE RESPONSIVE QUERIES
 ========================================= */
-
-/* Consolidate all tablet/mobile rules (max-width: 900px) */
 @media (max-width: 900px) {
   /* Grid */
   .bento-grid {
@@ -379,12 +663,10 @@ body {
   .hero-card p { max-width: 100%; }
   .hero-text-container { text-align: center; }
   
-/* ... keep your mobile grid and hero-card rules ... */
-
   .avatar-container {
     width: 200px;
     height: 200px;
-    margin-top: 3rem; /* Gives space for the pop-out head on mobile */
+    margin-top: 3rem; 
   }
   .avatar-circle {
     width: 200px;
@@ -411,9 +693,12 @@ body {
     border-right: none;
     border-bottom: 1px solid #334155;
   }
+
+  .contact-card, .contact-form-card {
+    grid-column: span 1 !important; 
+  }
 }
 
-/* Small Mobile tweaks for the Modal (max-width: 768px) */
 @media (max-width: 768px) {
   .modal-overlay { padding: 1rem; }
   .modal-image-container { height: 200px; }
