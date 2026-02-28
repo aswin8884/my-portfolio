@@ -6,7 +6,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       // The IDs of the sections we want to track
-      const sections = ['about', 'projects', 'contact'];
+      const sections = ['about', 'experience', 'projects', 'contact'];
       
       // Default to home if we are at the very top
       let currentSection = 'home'; 
