@@ -4,88 +4,63 @@ const Navbar = () => {
   const [activeLink, setActiveLink] = useState('home');
 
   useEffect(() => {
-    const handleScroll = () => {
-      // The IDs of the sections we want to track
-      const sections = ['about', 'experience', 'projects', 'contact'];
-      
-      // Default to home if we are at the very top
-      let currentSection = 'home'; 
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          // Calculates where the element is on the screen
-          const rect = element.getBoundingClientRect();
-          
-          // If the element's top edge passes the 200px mark from the top of the screen, it becomes active!
-          if (rect.top <= 200) {
-            currentSection = section;
-          }
-        }
-      }
-      
-      setActiveLink(currentSection);
-    };
-
-    // Listen for scrolling
-    window.addEventListener('scroll', handleScroll);
+    const sections = ['about', 'experience', 'projects', 'contact'];
     
-    // Run it once immediately when the page loads
-    handleScroll();
+    // 1. Set up the modern Intersection Observer
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // If the section crosses into our viewing threshold, make it active
+          if (entry.isIntersecting) {
+            setActiveLink(entry.target.id);
+          }
+        });
+      },
+      {
+        // This creates an invisible "trigger line" about 150px from the top of your screen.
+        // It accounts perfectly for your sticky navbar!
+        rootMargin: '-150px 0px -60% 0px' 
+      }
+    );
 
-    // Cleanup the listener when the component unmounts
-    return () => window.removeEventListener('scroll', handleScroll);
+    // 2. Tell the observer to watch your sections
+    sections.forEach((section) => {
+      const element = document.getElementById(section);
+      if (element) observer.observe(element);
+    });
+
+    // 3. Special check for "Home" (when you scroll all the way back to the top)
+    const handleScroll = () => {
+      if (window.scrollY < 100) {
+        setActiveLink('home');
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup when the component unmounts
+    return () => {
+      sections.forEach((section) => {
+        const element = document.getElementById(section);
+        if (element) observer.unobserve(element);
+      });
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
     <nav className="navbar">
       <div className="navbar-logo">
         <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>
-          
+          Aswin.
         </a>
       </div>
       
       <ul className="navbar-links">
-        <li>
-          <a 
-            href="#" 
-            className={activeLink === 'home' ? 'active' : ''} 
-          >
-            Home
-          </a>
-        </li>
-        <li>
-          <a 
-            href="#about" 
-            className={activeLink === 'about' ? 'active' : ''} 
-          >
-            About
-          </a>
-        </li>
-        <li>
-          <a 
-            href="#experience" 
-            className={activeLink === 'experience' ? 'active' : ''} 
-          >
-            Experience
-          </a>
-        </li>
-        <li>
-          <a 
-            href="#projects" 
-            className={activeLink === 'projects' ? 'active' : ''} 
-          >
-            Projects
-          </a>
-        </li>
-        <li>
-          <a 
-            href="#contact" 
-            className={activeLink === 'contact' ? 'active' : ''} 
-          >
-            Contact
-          </a>
-        </li>
+        <li><a href="#" className={activeLink === 'home' ? 'active' : ''}>Home</a></li>
+        <li><a href="#about" className={activeLink === 'about' ? 'active' : ''}>About</a></li>
+        <li><a href="#experience" className={activeLink === 'experience' ? 'active' : ''}>Experience</a></li>
+        <li><a href="#projects" className={activeLink === 'projects' ? 'active' : ''}>Projects</a></li>
+        <li><a href="#contact" className={activeLink === 'contact' ? 'active' : ''}>Contact</a></li>
       </ul>
     </nav>
   );
