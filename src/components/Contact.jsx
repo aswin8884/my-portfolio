@@ -1,28 +1,32 @@
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'; 
-import { FaWhatsapp } from 'react-icons/fa'; // 1. Import the WhatsApp icon
+import { FaWhatsapp } from 'react-icons/fa'; 
 
 const Contact = () => {
   return (
-    <div id="contact" className="bento-card contact-card">
-      <h2 style={{ color: '#a855f7', marginBottom: '1rem' }}>Let's Connect</h2>
-      <p style={{ color: '#94a3b8', marginBottom: '2rem' }}>
+    <div id="contact" className="bento-card col-span-1 md:col-span-4 row-span-2 justify-center text-center">
+      <h2 className="text-brand text-3xl font-bold mb-4">Let's Connect</h2>
+      <p className="text-slate-400 mb-8">
         Feel free to reach out for collaborations, opportunities, or just to say hello!
       </p>
       
-      <div className="social-links-container">
-        <a href="https://github.com/aswin8884" target="_blank" rel="noreferrer" className="social-btn github-btn">
+      <div className="flex flex-row flex-wrap justify-center gap-4">
+        {/* GitHub */}
+        <a href="#" className="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-slate-50 font-semibold text-sm transition-all duration-300 hover:-translate-y-1 hover:text-white hover:bg-[#333333] hover:border-[#333333]">
           <FiGithub size={20} /> GitHub
         </a>
         
-        <a href="https://linkedin.com/in/aswin-pulickal-9aa4a42b0" target="_blank" rel="noreferrer" className="social-btn linkedin-btn">
+        {/* LinkedIn */}
+        <a href="#" className="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-slate-50 font-semibold text-sm transition-all duration-300 hover:-translate-y-1 hover:text-white hover:bg-[#0077b5] hover:border-[#0077b5]">
           <FiLinkedin size={20} /> LinkedIn
         </a>
         
-        <a href="mailto:aswinpulickal.professional@gmail.com" className="social-btn email-btn">
+        {/* Email */}
+        <a href="mailto:aswinpulickal.professional@gmail.com" className="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-slate-50 font-semibold text-sm transition-all duration-300 hover:-translate-y-1 hover:text-white hover:bg-[#ea4335] hover:border-[#ea4335]">
           <FiMail size={20} /> Email
         </a>
 
-        <a href="https://wa.me/+4915510823207?text=Hi%20Aswin!" target="_blank" rel="noreferrer" className="social-btn whatsapp-btn">
+        {/* WhatsApp */}
+        <a href="https://wa.me/YOUR_NUMBER" className="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-slate-50 font-semibold text-sm transition-all duration-300 hover:-translate-y-1 hover:text-white hover:bg-[#25D366] hover:border-[#25D366]">
           <FaWhatsapp size={20} /> WhatsApp
         </a>
       </div>

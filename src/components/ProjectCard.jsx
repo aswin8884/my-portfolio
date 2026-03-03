@@ -1,54 +1,30 @@
-import { useState } from 'react'; // Notice useEffect is gone!
-import { motion, AnimatePresence } from 'framer-motion';
-import ProjectModal from './ProjectModal'; 
-
-const ProjectCard = ({ id, title, description, longDescription, techStack, images }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [currentImage, setCurrentImage] = useState(0);
-
+const ProjectCard = ({ title, description, image, onClick }) => {
   return (
-    <>
-      {/* --- THE STANDARD GRID CARD --- */}
-      <motion.div id={id}
-        layoutId={`card-container-${title}`} 
-        whileHover={{ scale: 1.02 }}
-        className="bento-card project-card"
-        onClick={() => setIsExpanded(true)}
-        style={{ cursor: 'pointer' }} 
-      >
-        <motion.img 
-          layoutId={`image-${title}`}
-          // The grid card now statically shows the first image in your array
-          src={images && images.length > 0 ? images[0] : ""} 
-          alt={title} 
-          className="project-image"
-        />
+    <div 
+      className="bento-card col-span-1 md:col-span-4 row-span-1 !p-0 flex flex-col md:flex-row items-stretch cursor-pointer group hover:border-brand/50"
+      onClick={onClick}
+    >
+      {/* Project Image */}
+      <img 
+        src={image || "/no_image.jpg"} 
+        alt={title} 
+        className="w-full md:w-[300px] h-[220px] md:h-auto min-h-[220px] object-cover border-b md:border-b-0 md:border-r border-slate-700 transition-transform duration-500 group-hover:scale-105"
+      />
+      
+      {/* Project Content */}
+      <div className="p-8 flex flex-col justify-center w-full z-10 bg-slate-800">
+        <h2 className="text-2xl font-bold mb-2 text-slate-50 group-hover:text-brand transition-colors">
+          {title}
+        </h2>
+        <p className="text-base text-slate-400 leading-relaxed">
+          {description}
+        </p>
         
-        <div className="project-content">
-          <motion.h2 layoutId={`title-${title}`}>{title}</motion.h2>
-          <p>{description}</p>
-          <span style={{ color: '#a855f7', marginTop: '1rem', fontSize: '0.9rem', fontWeight: 'bold' }}>
-            Click to expand ➔
-          </span>
-        </div>
-      </motion.div>
-
-      {/* --- THE EXPANDED MODAL POPUP --- */}
-      <AnimatePresence>
-        {isExpanded && (
-          <ProjectModal 
-            title={title}
-            longDescription={longDescription}
-            techStack={techStack}
-            images={images}
-            currentImage={currentImage}
-            setCurrentImage={setCurrentImage} 
-            setIsExpanded={setIsExpanded}
-            // setIsHovering is completely gone
-          />
-        )}
-      </AnimatePresence>
-    </>
+        <span className="mt-4 text-brand font-semibold text-sm flex items-center gap-2">
+          Click to expand <span className="group-hover:translate-x-1 transition-transform">→</span>
+        </span>
+      </div>
+    </div>
   );
 };
 

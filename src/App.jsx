@@ -1,45 +1,71 @@
-import './App.css';
+import { useState } from 'react';
+import './App.css'
+import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import ExperienceCard from './components/ExperienceCard';
 import ProjectCard from './components/ProjectCard';
-import ExperienceCard from './components/ExperienceCard'; 
+import ProjectModal from './components/ProjectModal';
 import Contact from './components/Contact';
 import ContactForm from './components/ContactForm';
+
+// Make sure this path matches where you keep your data!
 import { projectsData } from './data/projects'; 
-import Navbar from './components/Navbar';
 
 function App() {
+  // State to track which project is currently clicked open in the modal
+  const [selectedProject, setSelectedProject] = useState(null);
+
   return (
     <>
-      {/* 1. Navbar sits safely outside the grid */}
       <Navbar />
       
-      {/* 2. The Bento Grid holds the rest of your portfolio */}
-      <div className="bento-grid">
-        <Hero />
-        <About />
-        <ExperienceCard />
-
-        <div id="projects" className="bento-card projects-header-card">
-          <h2>Featured Projects</h2>
-          <p>A showcase of my recent work, technical experiments, and applications.</p>
-        </div>
+      {/* THE TAILWIND BENTO GRID WRAPPER
+        This replaces your old .bento-grid CSS class. 
+        It creates a 1-column layout on mobile, and a 4-column layout on desktop.
+      */}
+      <main className="grid grid-cols-1 md:grid-cols-4 auto-rows-[auto] md:auto-rows-[220px] gap-6 w-full max-w-[1100px]">
         
-       {projectsData.map((project, index) => (
-        <ProjectCard 
-          key={project.id}     
-          id={index === 0 ? "projects" : undefined} /* NEW: Gives the ID to only the first card! */
-          title={project.title} 
-          description={project.description} 
-          longDescription={project.longDescription} 
-          techStack={project.techStack}             
-          images={project.images}                   
-        />
-      ))}
+        <Hero />
+        
+        <About />
+        
+        <ExperienceCard />
+        
+        {/* Projects Section Header Card */}
+        <div 
+          id="projects" 
+          className="bento-card col-span-1 md:col-span-4 row-span-1 flex flex-col items-center justify-center text-center bg-gradient-to-r from-slate-800 to-slate-900 border-slate-700"
+        >
+          <h2 className="text-brand text-3xl md:text-4xl font-bold mb-2">Featured Projects</h2>
+          <p className="text-slate-400 text-lg">A showcase of my recent work, technical experiments, and applications.</p>
+        </div>
+
+        {/* Map through your projects data and render a card for each */}
+        {projectsData.map((project) => (
+          <ProjectCard 
+            key={project.id}     
+            title={project.title} 
+            description={project.description} 
+            // Safely grab the first image from your array, or fallback if it's missing
+            image={project.images ? project.images[0] : null} 
+            onClick={() => setSelectedProject(project)}
+          />
+        ))}
         
         <Contact />
+        
         <ContactForm />
-      </div>
+
+      </main>
+
+      {/* Render the Modal ONLY if a project is clicked */}
+      {selectedProject && (
+        <ProjectModal 
+          project={selectedProject} 
+          onClose={() => setSelectedProject(null)} 
+        />
+      )}
     </>
   );
 }
