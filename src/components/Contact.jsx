@@ -10,15 +10,25 @@ const Contact = () => {
       </p>
       
       <div className="flex flex-row flex-wrap justify-center gap-4">
-        {/* GitHub */}
-        <a href="VITE_GIT_HUB_LINK" className="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-slate-50 font-semibold text-sm transition-all duration-300 hover:-translate-y-1 hover:text-white hover:bg-[#333333] hover:border-[#333333]">
-          <FiGithub size={20} /> GitHub
-        </a>
-        
-        {/* LinkedIn */}
-        <a href="VITE_LINKEDIN_LINK" className="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-slate-50 font-semibold text-sm transition-all duration-300 hover:-translate-y-1 hover:text-white hover:bg-[#0077b5] hover:border-[#0077b5]">
-          <FiLinkedin size={20} /> LinkedIn
-        </a>
+       {/* GitHub */}
+<a 
+  href={import.meta.env.VITE_GIT_HUB_LINK} 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-slate-50 font-semibold text-sm transition-all duration-300 hover:-translate-y-1 hover:text-white hover:bg-[#333333] hover:border-[#333333]"
+>
+  <FiGithub size={20} /> GitHub
+</a>
+
+{/* LinkedIn */}
+<a 
+  href={import.meta.env.VITE_LINKEDIN_LINK} 
+  target="_blank" 
+  rel="noopener noreferrer"
+  className="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-slate-50 font-semibold text-sm transition-all duration-300 hover:-translate-y-1 hover:text-white hover:bg-[#0077b5] hover:border-[#0077b5]"
+>
+  <FiLinkedin size={20} /> LinkedIn
+</a>
         
         {/* Email */}
         <a href="mailto:aswinpulickal.professional@gmail.com" className="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-slate-50 font-semibold text-sm transition-all duration-300 hover:-translate-y-1 hover:text-white hover:bg-[#ea4335] hover:border-[#ea4335]">
