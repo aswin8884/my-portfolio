@@ -9,7 +9,7 @@ const ContactForm = () => {
     e.preventDefault();
     setStatus('Sending...');
     // Make sure your EmailJS keys are still here!
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, 'YOUR_PUBLIC_KEY')
+    emailjs.sendForm('service_4mbvl0f', 'template_xbiyl9i', form.current, 'FJIYvz_Li5XzP8MHL')
       .then(() => {
           setStatus('Message sent successfully!');
           e.target.reset();
