@@ -9,13 +9,12 @@ const ContactForm = () => {
     e.preventDefault();
     setStatus('Sending...');
     // Make sure your EmailJS keys are still here!
-    emailjs.sendForm('service_4mbvl0f', 'template_xbiyl9i', form.current, 'FJIYvz_Li5XzP8MHL')
-      .then(() => {
-          setStatus('Message sent successfully!');
-          e.target.reset();
-      }, (error) => {
-          setStatus('Failed to send message.');
-      });
+   emailjs.sendForm(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      form.current, 
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    )
   };
 
   return (
