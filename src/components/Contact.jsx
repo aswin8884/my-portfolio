@@ -26,7 +26,7 @@ const Contact = () => {
         </a>
 
         {/* WhatsApp */}
-        <a href="https://wa.me/YOUR_NUMBER" className="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-slate-50 font-semibold text-sm transition-all duration-300 hover:-translate-y-1 hover:text-white hover:bg-[#25D366] hover:border-[#25D366]">
+        <a href="https://wa.me/+4915510823207" className="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-slate-50 font-semibold text-sm transition-all duration-300 hover:-translate-y-1 hover:text-white hover:bg-[#25D366] hover:border-[#25D366]">
           <FaWhatsapp size={20} /> WhatsApp
         </a>
       </div>
