@@ -16,7 +16,7 @@ const About = () => {
     },
     { 
       name: "Machine Learning & Data Science", 
-      percentage: 80, 
+      percentage: 90, 
       color: "from-purple-400 to-purple-600", 
       glow: "shadow-[0_0_15px_rgba(168,85,247,0.4)]" 
     }
