@@ -8,8 +8,6 @@ import ProjectCard from './components/ProjectCard';
 import ProjectModal from './components/ProjectModal';
 import Contact from './components/Contact';
 import ContactForm from './components/ContactForm';
-
-// Make sure this path matches where you keep your data!
 import { projectsData } from './data/projects'; 
 
 function App() {
@@ -20,10 +18,6 @@ function App() {
     <>
       <Navbar />
       
-      {/* THE TAILWIND BENTO GRID WRAPPER
-        This replaces your old .bento-grid CSS class. 
-        It creates a 1-column layout on mobile, and a 4-column layout on desktop.
-      */}
       <main className="grid grid-cols-1 md:grid-cols-4 auto-rows-[auto] md:auto-rows-[220px] gap-6 w-full max-w-[1100px]">
         
         <Hero />
@@ -47,7 +41,6 @@ function App() {
             key={project.id}     
             title={project.title} 
             description={project.description} 
-            // Safely grab the first image from your array, or fallback if it's missing
             image={project.images ? project.images[0] : null} 
             onClick={() => setSelectedProject(project)}
           />

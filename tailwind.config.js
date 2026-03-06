@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        brand: '#a855f7',       /* Your signature purple */
+        brand: '#a855f7',       
         darkBg: '#0f172a',      /* App background */
         cardBg: '#1e293b',      /* Card background */
         cardBorder: '#334155',  /* Card borders */

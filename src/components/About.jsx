@@ -1,7 +1,6 @@
 import { FiDownload } from 'react-icons/fi';
 
 const About = () => {
-  // 1. Premium Major Skills (Now with Gradients & Glows!)
   const majorSkills = [
     { 
       name: "Python (Django, FastAPI)", 
@@ -23,7 +22,6 @@ const About = () => {
     }
   ];
 
-  // 2. Secondary Skills (Tag Cloud)
   const secondarySkills = {
     "Databases & Tools": ["PostgreSQL", "MongoDB", "SQL", "Git", "Power BI"],
     "DevOps & Cloud": ["Docker", "AWS (EC2)", "CI/CD", "TDD", "RESTful APIs"]
@@ -32,7 +30,6 @@ const About = () => {
    return (
     <div id="about" className="bento-card col-span-1 md:col-span-4 md:row-span-3 justify-start">
       
-      {/* Header Section with Title & Download Button */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
         <h2 className="text-brand text-3xl font-bold">About Me</h2>
         
@@ -54,7 +51,6 @@ const About = () => {
         Test-Driven Development (TDD), and leveraging my expertise to build impactful data solutions.
       </p>
 
-      {/* --- PREMIUM MAJOR SKILLS: Progress Bars --- */}
       <div className="flex flex-col gap-6 mb-10">
         <h3 className="text-sm font-bold text-slate-300 uppercase tracking-widest mb-2 border-b border-slate-700/50 pb-2">
           Core Expertise
@@ -66,16 +62,13 @@ const About = () => {
               <span className="tracking-wide">{skill.name}</span>
               <span className="text-slate-400 group-hover:text-slate-200 transition-colors">{skill.percentage}%</span>
             </div>
-            
-            {/* Premium Background Track (Inner Shadow for depth) */}
+          
             <div className="w-full h-3.5 bg-[#0b1120] rounded-full overflow-hidden border border-slate-700/80 shadow-inner">
               
-              {/* Animated Gradient Fill Bar with Glow */}
               <div 
                 className={`h-full rounded-full bg-gradient-to-r ${skill.color} ${skill.glow} relative`} 
                 style={{ width: `${skill.percentage}%` }}
               >
-                {/* Subtle glass reflection overlay */}
                 <div className="absolute top-0 left-0 w-full h-full bg-white/20 rounded-full"></div>
               </div>
 
@@ -84,7 +77,6 @@ const About = () => {
         ))}
       </div>
 
-      {/* --- SECONDARY SKILLS: Tag Cloud --- */}
       <div className="flex flex-col gap-6">
         <h3 className="text-sm font-bold text-slate-300 uppercase tracking-widest mb-2 border-b border-slate-700/50 pb-2">
           Technical Arsenal

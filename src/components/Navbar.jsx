@@ -6,18 +6,14 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'experience', 'projects', 'contact'];
-      let currentActive = 'home'; // Default to home
+      let currentActive = 'home';
 
       sections.forEach((section) => {
-        if (section === 'home') return; // Skip home in the loop
+        if (section === 'home') return;
         
         const element = document.getElementById(section);
         if (element) {
-          // Get the section's position relative to the screen
           const rect = element.getBoundingClientRect();
-          
-          // If the top of the section crosses the top 300px of the screen, it becomes active
-          // Because we loop in order, it will always grab the lowest section visible!
           if (rect.top <= 300) {
             currentActive = section;
           }
@@ -28,7 +24,7 @@ const Navbar = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Check immediately on load
+    handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
