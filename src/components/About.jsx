@@ -36,10 +36,11 @@ const About = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
         <h2 className="text-brand text-3xl font-bold">About Me</h2>
         
-      {/* Download CV Button (Dark base, White/Purple on hover) */}
+      {/* Download CV Button (Secure Cloud Link) */}
         <a 
-          href="/Cv_Aswin_Pulickal_Binduraj.pdf" 
-          download="Aswin_Pulickal_CV.pdf"
+          href={import.meta.env.VITE_CV_DOWNLOAD_LINK} 
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-5 py-2.5 bg-slate-800 border border-slate-600 text-slate-50 font-semibold rounded-xl shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:text-brand hover:border-white"
         >
           <FiDownload size={18} />
