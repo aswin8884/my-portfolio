@@ -36,7 +36,7 @@ const Contact = () => {
         </a>
         {/* WhatsApp */}
         <a 
-          href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}`} 
+          href={`https://wa.me/${import.meta.env.VITE_WHATSAPP_NUMBER}?text=Hi%20Aswin,%20I%20found%20your%20portfolio%20and%20wanted%20to%20connect!`} 
           target="_blank" 
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 px-5 py-3 bg-slate-900 border border-slate-700 rounded-xl text-slate-50 font-semibold text-sm transition-all duration-300 hover:-translate-y-1 hover:text-white hover:bg-[#25D366] hover:border-[#25D366]"
