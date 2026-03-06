@@ -5,26 +5,50 @@ const About = () => {
     { 
       name: "Python (Django, FastAPI)", 
       percentage: 90, 
-      color: "from-emerald-400 to-emerald-600", 
-      glow: "shadow-[0_0_15px_rgba(16,185,129,0.4)]" 
-    },
-    { 
-      name: "React.js & JavaScript", 
-      percentage: 85, 
-      color: "from-blue-400 to-blue-600", 
-      glow: "shadow-[0_0_15px_rgba(59,130,246,0.4)]" 
+      color: "from-[#3776AB] to-[#05998b]", 
+      glow: "shadow-[0_0_20px_rgba(5,153,139,0.5)]" 
     },
     { 
       name: "Machine Learning & Data Science", 
       percentage: 90, 
-      color: "from-purple-400 to-purple-600", 
-      glow: "shadow-[0_0_15px_rgba(168,85,247,0.4)]" 
+      color: "from-[#4F46E5] to-[#A855F7]", 
+      glow: "shadow-[0_0_20px_rgba(168,85,247,0.5)]" 
+    },
+    { 
+      name: "React.js & JavaScript", 
+      percentage: 85, 
+      color: "from-[#3178C6] to-[#61DAFB]", 
+      glow: "shadow-[0_0_20px_rgba(97,218,251,0.5)]" 
+    },
+    { 
+      name: "Databases (SQL & NoSQL)", 
+      percentage: 85, 
+      color: "from-[#00758F] to-[#47A248]", 
+      glow: "shadow-[0_0_20px_rgba(71,162,72,0.5)]" 
     }
   ];
 
   const secondarySkills = {
     "Databases & Tools": ["PostgreSQL", "MongoDB", "SQL", "Git", "Power BI"],
     "DevOps & Cloud": ["Docker", "AWS (EC2)", "CI/CD", "TDD", "RESTful APIs"]
+  };
+
+  // --- NEW: Helper function to determine the brand glow colors for secondary skills ---
+  const getSkillGlowClass = (skill) => {
+    const s = skill.toLowerCase();
+    if (s.includes('postgres')) return 'hover:text-[#336791] hover:border-[#336791] hover:shadow-[0_0_12px_rgba(51,103,145,0.4)]';
+    if (s.includes('mongo')) return 'hover:text-[#47A248] hover:border-[#47A248] hover:shadow-[0_0_12px_rgba(71,162,72,0.4)]';
+    if (s.includes('sql') && !s.includes('no')) return 'hover:text-[#00758F] hover:border-[#00758F] hover:shadow-[0_0_12px_rgba(0,117,143,0.4)]'; // MySQL Blue
+    if (s.includes('git')) return 'hover:text-[#F05032] hover:border-[#F05032] hover:shadow-[0_0_12px_rgba(240,80,50,0.4)]';
+    if (s.includes('power bi')) return 'hover:text-[#F2C811] hover:border-[#F2C811] hover:shadow-[0_0_12px_rgba(242,200,17,0.4)]';
+    if (s.includes('docker')) return 'hover:text-[#2496ED] hover:border-[#2496ED] hover:shadow-[0_0_12px_rgba(36,150,237,0.4)]';
+    if (s.includes('aws')) return 'hover:text-[#FF9900] hover:border-[#FF9900] hover:shadow-[0_0_12px_rgba(255,153,0,0.4)]';
+    if (s.includes('ci/cd')) return 'hover:text-[#2088FF] hover:border-[#2088FF] hover:shadow-[0_0_12px_rgba(32,136,255,0.4)]'; // GitHub Actions Blue
+    if (s.includes('tdd')) return 'hover:text-[#10B981] hover:border-[#10B981] hover:shadow-[0_0_12px_rgba(16,185,129,0.4)]'; // Emerald Green
+    if (s.includes('rest')) return 'hover:text-[#FF6C37] hover:border-[#FF6C37] hover:shadow-[0_0_12px_rgba(255,108,55,0.4)]'; // Postman Orange
+    
+    // Fallback to the brand purple
+    return 'hover:text-brand hover:border-brand hover:shadow-[0_0_12px_rgba(168,85,247,0.5)]';
   };
 
    return (
@@ -92,7 +116,7 @@ const About = () => {
                 {items.map(skill => (
                   <span 
                     key={skill} 
-                    className="bg-slate-900 text-slate-300 border border-slate-700/80 px-3 py-1.5 rounded-lg text-sm hover:border-brand hover:text-white hover:bg-slate-800 transition-all cursor-default shadow-sm"
+                    className={`bg-slate-900 text-slate-300 border border-slate-700/80 px-3 py-1.5 rounded-lg text-sm transition-all duration-300 cursor-default shadow-sm ${getSkillGlowClass(skill)}`}
                   >
                     {skill}
                   </span>

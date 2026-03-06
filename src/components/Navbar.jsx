@@ -32,7 +32,7 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 w-full h-[75px] flex justify-between items-center px-[5%] bg-darkBg/85 backdrop-blur-md z-[2000] border-b border-cardBorder">
       <div className="text-[1.8rem] font-extrabold text-slate-50">
-        <a href="#">Aswin.</a>
+        <a href="#">Aswin</a>
       </div>
       
       <ul className="hidden md:flex gap-8 list-none">
