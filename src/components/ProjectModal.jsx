@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FiExternalLink, FiArrowLeft, FiArrowRight, FiX } from 'react-icons/fi';
+import { FiExternalLink, FiArrowLeft, FiArrowRight, FiX, FiGithub } from 'react-icons/fi'; // Added FiGithub
 
 const ProjectModal = ({ project, onClose }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -29,7 +29,6 @@ const ProjectModal = ({ project, onClose }) => {
   return (
     <div className="fixed inset-0 bg-[#070a12]/95 backdrop-blur-xl flex justify-center items-center z-[9999] p-4 md:p-8">
       
-      {/* Premium "Lift & Focus" Animation */}
       <style>{`
         @keyframes studioFadeIn {
           0% { opacity: 0; filter: blur(10px); transform: scale(0.95) translateY(15px); }
@@ -37,7 +36,6 @@ const ProjectModal = ({ project, onClose }) => {
         }
         .animate-studio-slide { animation: studioFadeIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
         
-        /* Subtle dotted background pattern */
         .bg-dot-pattern {
           background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
           background-size: 20px 20px;
@@ -46,24 +44,19 @@ const ProjectModal = ({ project, onClose }) => {
 
       <div className="bg-slate-800/90 rounded-[32px] w-full max-w-[1200px] max-h-[95vh] border border-white/10 overflow-hidden relative flex flex-col shadow-[0_0_80px_rgba(0,0,0,0.9)]">
         
-        {/* Close Button */}
         <button onClick={onClose} className="absolute top-6 right-6 bg-black/40 hover:bg-red-500 text-white p-3 rounded-full z-[110] transition-all duration-300 hover:rotate-90 hover:scale-110 shadow-xl border border-white/10 backdrop-blur-md">
           <FiX size={24} />
         </button>
 
-        {/* --- STUDIO SHOWCASE IMAGE SECTION --- */}
         <div className="relative w-full h-[350px] md:h-[550px] bg-[#02040a] flex justify-center items-center border-b border-slate-800 overflow-hidden p-6 md:p-12">
           
-          {/* 1. Technical Dot Grid Background */}
           <div className="absolute inset-0 bg-dot-pattern opacity-50 z-0"></div>
 
-          {/* 2. Soft Ambilight Glow */}
           <div 
             className="absolute inset-0 bg-cover bg-center blur-[80px] opacity-40 scale-125 transition-all duration-1000 z-0"
             style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
           ></div>
 
-          {/* 3. The Floating Screenshot (Rounded, Bordered, Shadowed) */}
           <img 
             key={currentImageIndex} 
             src={images[currentImageIndex]} 
@@ -71,7 +64,6 @@ const ProjectModal = ({ project, onClose }) => {
             alt="Project Screenshot" 
           />
           
-          {/* Floating Glassmorphism Control Pill */}
           {images.length > 1 && (
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto md:right-10 z-[100] flex items-center gap-5 bg-[#0f172a]/80 backdrop-blur-xl border border-white/10 px-6 py-3.5 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
               
@@ -100,25 +92,40 @@ const ProjectModal = ({ project, onClose }) => {
           )}
         </div>
 
-        {/* --- CONTENT SECTION --- */}
         <div className="p-8 md:p-12 overflow-y-auto relative z-20 bg-slate-900/50 backdrop-blur-md">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-start gap-6 mb-8">
             <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight drop-shadow-md">
               {project.title}
             </h2>
             
-            {project.link && (
-              <a href={project.link} target="_blank" rel="noreferrer" 
-                 className="group relative flex items-center gap-3 px-8 py-4 bg-white text-slate-900 font-bold rounded-2xl overflow-hidden transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_20px_40px_-10px_rgba(168,85,247,0.5)]">
-                
-                <div className="absolute inset-0 bg-gradient-to-r from-brand via-[#c084fc] to-brand opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
-                <FiExternalLink size={22} className="relative z-10 text-slate-900 group-hover:text-white transition-colors duration-300" />
-                <span className="relative z-10 text-slate-900 group-hover:text-white transition-colors duration-300">
-                  Live Demo
-                </span>
-              </a>
-            )}
+            {/* Button Container: Stacks buttons vertically */}
+            <div className="flex flex-col gap-3 w-full md:w-auto">
+              
+              {/* Live Demo Button (Primary) */}
+              {project.link && (
+                <a href={project.link} target="_blank" rel="noreferrer" 
+                   className="group relative flex justify-center items-center gap-3 px-8 py-3.5 bg-white text-slate-900 font-bold rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_15px_30px_-10px_rgba(168,85,247,0.5)] border border-transparent">
+                  <div className="absolute inset-0 bg-gradient-to-r from-brand via-[#c084fc] to-brand opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <FiExternalLink size={20} className="relative z-10 text-slate-900 group-hover:text-white transition-colors duration-300" />
+                  <span className="relative z-10 text-slate-900 group-hover:text-white transition-colors duration-300">
+                    Live Demo
+                  </span>
+                </a>
+              )}
+
+              {/* GitHub Button (Secondary Twin) */}
+              {project.github && (
+                <a href={project.github} target="_blank" rel="noreferrer" 
+                   className="group relative flex justify-center items-center gap-3 px-8 py-3.5 bg-[#0f172a] text-white font-bold rounded-xl overflow-hidden transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_15px_30px_-10px_rgba(255,255,255,0.2)] border border-slate-700 hover:border-slate-500">
+                  <div className="absolute inset-0 bg-gradient-to-r from-slate-700 via-slate-600 to-slate-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <FiGithub size={20} className="relative z-10 text-slate-300 group-hover:text-white transition-colors duration-300" />
+                  <span className="relative z-10 text-slate-300 group-hover:text-white transition-colors duration-300">
+                    View Code
+                  </span>
+                </a>
+              )}
+
+            </div>
           </div>
 
           <p className="text-slate-300 text-lg md:text-xl leading-relaxed mb-10 max-w-4xl font-light">
