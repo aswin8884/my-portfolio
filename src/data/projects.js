@@ -7,7 +7,7 @@ export const projectsData = [
     link: "https://fokus-rag.vercel.app/", 
     github: "https://github.com/aswin8884/fokus-rag.git",
     techStack: ["React", "FastAPI", "Python", "LangChain", "Cohere AI", "ChromaDB", "Tailwind CSS"],
-    images: ["projects/fokus_rag_img1.jpg", "projects/fokus_rag_img2.jpg", "projects/fokus_rag_img3.jpg"] 
+    images: ["projects/fokus_rag_img1.png", "projects/fokus_rag_img2.png", "projects/fokus_rag_img3.png"] 
 },
   {
     id: 2,
